@@ -1,41 +1,178 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# DocPal Frontend
 
-## Getting Started
+## Overview
 
-First, run the development server:
+**DocPal Frontend** is the user-facing web application for the DocPal medical AI platform. It provides a secure, responsive, and intuitive chat interface that allows users to interact with the backend medical assistant powered by FDA-backed intelligence and LLM orchestration.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Built with **Next.js**, **React**, and **Tailwind CSS**, the frontend is designed to deliver a polished conversational experience while maintaining strong integration with authentication, backend APIs, and deployment-ready infrastructure.
+
+---
+
+## Purpose of the Frontend
+
+The frontend serves as the presentation layer of the DocPal ecosystem.
+
+Its responsibilities include:
+
+- Rendering the conversational UI
+- Managing user authentication
+- Sending chat requests to the backend API
+- Displaying structured medical responses
+- Showing health/system readiness indicators
+- Supporting responsive layouts for desktop and mobile users
+
+The frontend does **not** perform medical reasoning itself — it delegates intelligence tasks to the backend and focuses solely on user interaction and experience.
+
+---
+
+## Core Objectives
+
+- Deliver a clean and accessible medical AI chat experience
+- Ensure seamless integration with the backend API
+- Provide secure access control for users
+- Maintain a scalable and production-ready codebase
+- Support deployment on modern cloud platforms
+
+---
+
+## Technical Stack
+
+### Framework & Libraries
+
+- **Next.js** — React framework for routing and rendering
+- **React** — component-based UI development
+- **TypeScript** — static typing for reliability
+- **Tailwind CSS** — utility-first styling
+- **Clerk** — authentication and user management
+- **Lucide Icons / UI utilities** — modern UI elements
+
+---
+
+## Application Architecture
+
+### Layered Frontend Design
+
+```text
+User Browser
+     ↓
+Next.js App Router
+     ↓
+UI Components / Pages
+     ↓
+Hooks / State Management
+     ↓
+API Service Layer
+     ↓
+DocPal Backend API
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Repository Structure
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```text
+docpal-frontend/
+├── pages/             # Next.js routes/pages
+├── public/            # Static assets
+├── styles/            # Global styles
+├── middleware.ts      # Route protection / auth logic
+├── next.config.js     # Next.js configuration
+└── package.json       # Dependencies / scripts
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Key Features
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+1. Conversational Medical Chat Interface
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application provides a real-time chat experience where users can:
 
-## Learn More
+- Ask drug-related questions
+- Compare medications
+- Request follow-up clarifications
 
-To learn more about Next.js, take a look at the following resources:
+Responses are rendered in a structured, readable format with markdown support.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+2. Authentication & Access Control
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Clerk integration enables:
 
-## Deploy on Vercel
+- User sign-up / sign-in
+- Session persistence
+- Protected routes
+- User profile management
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This ensures only authenticated users access the assistant.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
-# docpal-frontend
+3. Backend Connectivity
+
+The frontend communicates with the backend via REST APIs.
+
+Key API endpoints:
+
+- `/api/chat` -> sends user prompts
+- `/api/health` -> checks backend readiness
+
+This supports health monitoring and user feedback.
+
+4. Health Status Indicator
+
+A visible system health check allows users to confirm:
+
+- backend availability
+- service readiness
+- operational stability
+
+This improves trust and transparency.
+
+5. Responsive User Experience
+
+Designed for:
+
+- desktop
+- tablet
+- mobile devices
+
+Ensures accessibility across screen sizes.
+
+## UI/UX Philosophy
+
+The frontend emphasizes:
+
+- clarity
+- minimal cognitive load
+- trustworthiness
+- fast interaction cycles
+
+Because medical AI systems require user confidence, the interface avoids clutter and prioritizes readability.
+
+## State Management Approach
+
+State is managed locally using React hooks and component composition.
+
+This lightweight approach supports:
+
+- chat history handling
+- loading states
+- API responses
+- authentication states
+
+Avoids unnecessary complexity.
+
+## Deployment Strategy
+
+The frontend is optimized for deployment to Vercel.
+
+### Why Vercel?
+
+- native Next.js support
+- fast global CDN
+- automatic previews
+- easy environment variable management
+
+## Environment Configuration
+
+Typical variables include:
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=https://your-backend-url
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-key
+CLERK_SECRET_KEY=your-secret-key
+```
